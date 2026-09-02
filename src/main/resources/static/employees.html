@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Employees - Socum</title>
+        <style>
+            .logged-in .login_button,
+            .logged-in .signup_button
+            {
+                display: none !important;
+            }
+        </style>
+        <link rel="stylesheet" href="CSS/master.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <script src="JS/notifications.js"></script>
+        <script src="JS/employees.js"></script>
+        <script src="JS/ai.js"></script>
+        <script src="JS/theme.js"></script>
+        <script src="auth.js"></script>
+    </head>
+    <body class="employees-page workspace-ui">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="RafiQ logo">
+            </div>
+            <span class="Raf">RafiQ</span>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="main.html">Home</a>
+                <a href="settings.html">Settings</a>
+            </div>
+            <a href="login.html" class="login_button">Login</a>
+            <a href="login.html" class="signup_button">Sign Up</a>
+        </nav>
+        <div id="themeWidget" class="theme-widget">
+            <span class="icon sun"><i class="fa-solid fa-sun"></i></span>
+            <label class="switch">
+                <input type="checkbox" id="darkToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="icon moon"><i class="fa-solid fa-moon"></i></span>
+        </div>
+        <section class="employees-container app-shell">
+            <div class="employees-hero">
+                <div>
+                    <span class="eyebrow">Team directory</span>
+                    <h1>Employees</h1>
+                    <p>Review team members, roles, and manager actions from the same workspace style as the dashboard.</p>
+                </div>
+            </div>
+            <div id="teamManagement" class="team-management" hidden="">
+                <h2>Manage My Team</h2>
+                <p>Add an available Developer using their Staff ID.</p>
+                <div class="team-management-form">
+                    <input id="teamMemberStaffId" type="text" placeholder="Developer Staff ID (DEV-12345)">
+                    <button class="btn" type="button" onclick="addTeamMember()">Add to Team</button>
+                </div>
+            </div>
+            <div id="empList" class="emp-grid"></div>
+        </section>
+        <div id="toast-container"></div>
+    </body>
+</html>

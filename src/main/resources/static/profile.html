@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Profile - Socum</title>
+        <style>
+            .logged-in .login_button,
+                 .logged-in .signup_button { display: none !important; }
+        </style>
+        <link href="CSS/master.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=DM+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+        <script src="JS/profile.js"></script>
+        <script src="JS/posts.js"></script>
+        <script src="JS/ai.js"></script>
+        <script src="auth.js"></script>
+        <script src="JS/theme.js"></script>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="logo">
+                <img alt="RafiQ logo" src="images/logo.png">
+            </div>
+            <span class="Raf">RafiQ</span>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="main.html">Home</a>
+                <a href="profile.html">Profile</a>
+            </div>
+            <a class="login_button" href="login.html">Login</a>
+            <a class="signup_button" href="login.html">Sign Up</a>
+            <a class="nav-profile" href="profile.html">
+                <div class="nav-avatar">
+                    <img alt="avatar" id="navUserAvatar" src="images/default.png">
+                </div>
+                <span id="navUserName">Guest</span>
+            </a>
+        </nav>
+        <div class="theme-widget" id="themeWidget">
+            <span class="icon sun"><i class="fa-solid fa-sun"></i></span>
+            <label class="switch">
+                <input id="darkToggle" type="checkbox">
+                <span class="slider"></span>
+            </label>
+            <span class="icon moon"><i class="fa-solid fa-moon"></i></span>
+        </div>
+        <input accept="image/*" hidden="" id="imageInput" type="file">
+        <input accept="image/*" hidden="" id="coverInput" type="file">
+        <div class="profile-page">
+            <div class="cover-banner" id="cover"></div>
+            <div class="profile-layout">
+                <div class="profile-card">
+                    <div class="avatar-box">
+                        <img alt="Profile photo" id="profileImage" src="images/default.png">
+                        <label class="upload-btn" id="cameraBtn" title="Change photo"><i class="fa fa-camera"></i></label>
+                        <div class="upload-menu" id="uploadMenu">
+                            <div class="choose-item" id="chooseProfile"><i class="fa fa-user"></i> Change Profile Photo</div>
+                            <div class="remove-item" id="removeProfile"><i class="fa fa-trash"></i> Remove Profile Photo</div>
+                        </div>
+                    </div>
+                    <p class="pc-name" id="displayName">Your Name</p>
+                    <p class="pc-role" id="introRole">Developer</p>
+                    <p class="pc-staffid" id="introStaffId">Staff ID: —</p>
+                    <div class="pc-stats">
+                        <div class="pc-stat"><strong id="completedTasksCount">0</strong> <span>Tasks Done</span></div>
+                        <div class="pc-stat"><strong id="teamRoomsCount">0</strong> <span>Rooms</span></div>
+                        <div class="pc-stat"><strong id="activityScore">—</strong> <span>Score</span></div>
+                    </div>
+                    <div class="pc-links">
+                        <a class="pc-link" href="#" id="linkGithub" rel="noopener noreferrer" target="_blank">
+                            <span><i class="fa-brands fa-github" style="margin-right:8px;"></i> GitHub</span>
+                            <i class="fa fa-arrow-up-right-from-square" style="font-size:11px;opacity:0.5;"></i>
+                        </a>
+                        <a class="pc-link" href="#" id="linkTwitter" rel="noopener noreferrer" target="_blank">
+                            <span><i class="fa-brands fa-x-twitter" style="margin-right:8px;"></i> Twitter / X</span>
+                            <i class="fa fa-arrow-up-right-from-square" style="font-size:11px;opacity:0.5;"></i>
+                        </a>
+                        <a class="pc-link" href="#" id="linkLinkedin" rel="noopener noreferrer" target="_blank">
+                            <span><i class="fa-brands fa-linkedin" style="margin-right:8px;"></i> LinkedIn</span>
+                            <i class="fa fa-arrow-up-right-from-square" style="font-size:11px;opacity:0.5;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="profile-main">
+                    <div class="profile-tabs">
+                        <button class="active" onclick="switchTab(&#x27;tab-about&#x27;, this)">
+                            <i class="fa fa-user" style="margin-right:6px;"></i>
+                            About
+                        </button>
+                        <button onclick="switchTab(&#x27;tab-posts&#x27;, this)">
+                            <i class="fa fa-newspaper" style="margin-right:6px;"></i>
+                            Posts
+                        </button>
+                        <button onclick="switchTab(&#x27;tab-edit&#x27;, this)">
+                            <i class="fa fa-pen" style="margin-right:6px;"></i>
+                            Edit Profile
+                        </button>
+                    </div>
+                    <div class="tab-panel active" id="tab-about">
+                        <div class="info-card">
+                            <h3><i class="fa fa-circle-info"></i> About</h3>
+                            <p class="bio-text" id="profileBio">—</p>
+                        </div>
+                        <div class="info-card">
+                            <h3><i class="fa fa-star"></i> Skills</h3>
+                            <div class="skills-wrap" id="profileSkillsDisplay">
+                                <span style="opacity:0.5;font-size:13px;">No skills added yet.</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <h3><i class="fa fa-briefcase"></i> Experience</h3>
+                            <div class="exp-list" id="profileExpDisplay">
+                                <span style="opacity:0.5;font-size:13px;">No experience added yet.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-posts">
+                        <div class="create-post-box">
+                            <textarea id="postInput" placeholder="What&#x27;s on your mind?"></textarea>
+                            <div id="postMediaPreview" style="display:none; margin-top:10px; position:relative;">
+                                <img id="postImgPreview" style="display:none; max-width:100%; border-radius:10px; max-height:320px; object-fit:cover;">
+                                <video controls="" id="postVidPreview" style="display:none; max-width:100%; border-radius:10px; max-height:320px;">
+                                </video>
+                                <button onclick="clearPostMedia()" style="position:absolute;top:6px;right:6px;background:#ff4d4d;color:white;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;">
+                                    ×
+                                </button>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:10px; margin-top:10px; flex-wrap:wrap;">
+                                <input accept="image/*,video/*" hidden="" id="postMediaInput" onchange="previewPostMedia(this)" type="file">
+                                <button class="post-btn" onclick="document.getElementById(&#x27;postMediaInput&#x27;).click()" style="background:var(--dark-bg);color:var(--accent-yellow);">
+                                    <i class="fa fa-image" style="margin-right:6px;"></i>
+                                    Photo
+                                </button>
+                                <button class="post-btn" onclick="addPost()"><i class="fa fa-paper-plane" style="margin-right:6px;"></i> Post</button>
+                            </div>
+                        </div>
+                        <div id="postList"></div>
+                    </div>
+                    <div class="tab-panel" id="tab-edit">
+                        <div class="info-card">
+                            <h3><i class="fa fa-pen-to-square"></i> Basic Info</h3>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label>Full Name</label>
+                                    <input id="nameInput" placeholder="Your full name" type="text">
+                                </div>
+                                <div class="form-field">
+                                    <label>Email</label>
+                                    <input id="emailInput" placeholder="your@email.com" type="email">
+                                </div>
+                                <div class="form-field">
+                                    <label>Phone Number</label>
+                                    <input id="phoneInput" placeholder="Your phone number" type="text">
+                                </div>
+                            </div>
+                            <div class="form-field" style="margin-bottom:14px;">
+                                <label>Staff ID (read-only)</label>
+                                <input id="staffIdDisplay" placeholder="—" readonly="" style="opacity:0.6;cursor:not-allowed;" type="text">
+                            </div>
+                            <p style="font-size:12px;color:var(--white-writable);opacity:0.6;margin-bottom:20px;">
+                                Current email on file:
+                                <strong id="displayEmail"></strong>
+                            </p>
+                            <button class="save-btn" onclick="saveProfile()">
+                                <i class="fa fa-floppy-disk" style="margin-right:6px;"></i>
+                                Save Basic Info
+                            </button>
+                        </div>
+                        <div class="info-card">
+                            <h3><i class="fa fa-address-card"></i> About Me</h3>
+                            <div class="form-field" style="margin-bottom:14px;">
+                                <label>Bio</label>
+                                <textarea id="bioInput" placeholder="Tell people about yourself…" style="min-height:90px;"></textarea>
+                            </div>
+                            <div class="form-field" style="margin-bottom:14px;">
+                                <label>Skills <span style="font-weight:400;opacity:0.6;">(comma-separated)</span></label>
+                                <input id="skillsInput" placeholder="e.g. Figma, React, Leadership" type="text">
+                            </div>
+                            <div style="margin-bottom:6px;">
+                                <label style="font-size:12px;font-weight:700;opacity:0.7;text-transform:uppercase;letter-spacing:.5px;">
+                                    Experience (up to 3 entries)
+                                </label>
+                            </div>
+                            <div class="form-row" style="margin-bottom:10px;">
+                                <div class="form-field">
+                                    <input id="exp1Role" placeholder="Role — Company" type="text">
+                                </div>
+                                <div class="form-field">
+                                    <input id="exp1Years" placeholder="e.g. 2020 – Present" type="text">
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom:10px;">
+                                <div class="form-field">
+                                    <input id="exp2Role" placeholder="Role — Company" type="text">
+                                </div>
+                                <div class="form-field">
+                                    <input id="exp2Years" placeholder="e.g. 2018 – 2020" type="text">
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-bottom:20px;">
+                                <div class="form-field">
+                                    <input id="exp3Role" placeholder="Role — Company" type="text">
+                                </div>
+                                <div class="form-field">
+                                    <input id="exp3Years" placeholder="e.g. 2015 – 2018" type="text">
+                                </div>
+                            </div>
+                            <button class="save-btn" onclick="saveProfileExtended()">
+                                <i class="fa fa-floppy-disk" style="margin-right:6px;"></i>
+                                Save About Me
+                            </button>
+                        </div>
+                        <div class="info-card">
+                            <h3><i class="fa fa-link"></i> Social Links</h3>
+                            <div class="form-field" style="margin-bottom:12px;">
+                                <label>GitHub URL</label>
+                                <input id="linkGithubInput" placeholder="https://github.com/yourname" type="url">
+                            </div>
+                            <div class="form-field" style="margin-bottom:12px;">
+                                <label>Twitter / X URL</label>
+                                <input id="linkTwitterInput" placeholder="https://twitter.com/yourname" type="url">
+                            </div>
+                            <div class="form-field" style="margin-bottom:20px;">
+                                <label>LinkedIn URL</label>
+                                <input id="linkLinkedinInput" placeholder="https://linkedin.com/in/yourname" type="url">
+                            </div>
+                            <button class="save-btn" onclick="saveSocialLinks()">
+                                <i class="fa fa-floppy-disk" style="margin-right:6px;"></i>
+                                Save Links
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="socum-chat-launcher" id="socum-ai-launcher">
+            <img alt="AI Bot" src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png">
+        </div>
+        <div class="socum-chat-window socum-hidden" id="socum-ai-window">
+            <div class="socum-chat-header">
+                <div class="socum-bot-info"><span class="socum-status-dot"></span> <span>RafiQ AI Assistant</span></div>
+                <button id="socum-close-chat">×</button>
+            </div>
+            <div class="socum-chat-body" id="socum-chat-body"></div>
+            <div class="socum-chat-footer">
+                <input id="socum-chat-input" placeholder="How can I help you?" type="text">
+                <button id="socum-send-btn">➤</button>
+            </div>
+        </div>
+        <div id="toast-container"></div>
+    </body>
+</html>

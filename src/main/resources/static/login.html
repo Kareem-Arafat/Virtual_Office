@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login - RafiQ</title>
+        <link rel="stylesheet" href="login_page/master.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <script src="JS/login.js"></script>
+        <script src="JS/theme.js"></script>
+    </head>
+    <body class="login-page">
+        <div id="themeWidget" class="theme-widget">
+            <span class="icon sun"><i class="fa-solid fa-sun"></i></span>
+            <label class="switch">
+                <input type="checkbox" id="darkToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="icon moon"><i class="fa-solid fa-moon"></i></span>
+        </div>
+        <a href="main.html" class="home-btn" aria-label="Home"><i class="fa-solid fa-house"></i></a>
+        <input type="checkbox" id="change-form" style="display:none;">
+        <div class="main-wrapper">
+            <div class="container">
+                <div class="form-container sign-in-container">
+                    <form>
+                        <h2 class="form-title">Welcome back!</h2>
+                        <div class="input-group">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="text" id="loginEmail" placeholder="Email">
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-regular fa-user"></i>
+                            <input type="text" id="loginUsername" placeholder="Username">
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-id-card"></i>
+                            <input type="text" id="loginStaffId" placeholder="Staff ID (Check Email)">
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Password">
+                            <i class="fa-solid fa-eye password-eye" id="loginPasswordEye" onclick="togglePassword(&#x27;loginPassword&#x27;, &#x27;loginPasswordEye&#x27;)">
+                            </i>
+                        </div>
+                        <div class="form-helper-row">
+                            <a href="forgot-password.html" class="forgot-link">
+                                <i class="fa-solid fa-key"></i>
+                                <span>Forgot your password?</span>
+                            </a>
+                        </div>
+                        <button type="button" class="btn-orange" onclick="triggerLogin()">Sign In</button>
+                        <label for="change-form" class="mobile-only-link">Create Account</label>
+                    </form>
+                </div>
+                <div class="form-container sign-up-container">
+                    <form>
+                        <h2 class="form-title">Create Account</h2>
+                        <div class="input-group">
+                            <i class="fa-regular fa-user"></i>
+                            <input type="text" id="regName" placeholder="Full Name">
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="text" id="regEmail" placeholder="Email">
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <input type="text" value="Role assigned automatically" aria-label="New account role" readonly="readonly">
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="regPass" placeholder="Password" aria-describedby="regPassHint">
+                            <i class="fa-solid fa-eye password-eye" id="registerPasswordEye" onclick="togglePassword(&#x27;regPass&#x27;, &#x27;registerPasswordEye&#x27;)">
+                            </i>
+                        </div>
+                        <p id="regPassHint" class="hint-text" style="
+                            font-size:0.82rem;
+                            color:#64748b;
+                            margin:0.35rem 0 0;
+                            line-height:1.35;
+                        ">
+                        </p>
+                        <button type="button" class="btn-orange" onclick="triggerRegister()">Sign Up</button>
+                        <label for="change-form" class="mobile-only-link">Sign In</label>
+                    </form>
+                </div>
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-left">
+                            <img src="images/logo.png" alt="RafiQ logo" style="height:40px">
+                            <h1>Already a Member?</h1>
+                            <p>Login with your Staff ID to start working</p>
+                            <div class="si_pt"><label for="change-form" class="btn-white">Sign In</label></div>
+                        </div>
+                        <div class="overlay-panel overlay-right">
+                            <img src="images/logo.png" alt="RafiQ logo" style="height:40px">
+                            <h2>New Here?</h2>
+                            <p>Sign up and we will email your Staff ID</p>
+                            <label for="change-form" class="btn-white">Sign Up</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="toast-container"></div>
+    </body>
+</html>

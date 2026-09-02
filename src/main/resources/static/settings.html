@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Settings - Socum</title>
+        <style>
+            .logged-in .login_button,
+            .logged-in .signup_button
+            {
+                display: none !important;
+            }
+        </style>
+        <link rel="stylesheet" href="CSS/master.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <script src="JS/setting.js"></script>
+        <script src="JS/notifications.js"></script>
+        <script src="JS/theme.js"></script>
+        <script src="auth.js"></script>
+    </head>
+    <body class="settings-page">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="RafiQ logo">
+            </div>
+            <span class="Raf">RafiQ</span>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="main.html">Home</a>
+                <a href="settings.html">Settings</a>
+            </div>
+        </nav>
+        <div id="themeWidget" class="theme-widget">
+            <span class="icon sun"><i class="fa-solid fa-sun"></i></span>
+            <label class="switch">
+                <input type="checkbox" id="darkToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="icon moon"><i class="fa-solid fa-moon"></i></span>
+        </div>
+        <section class="settings-container">
+            <h1>Settings</h1>
+            <div class="settings-box">
+                <h2>Security</h2>
+                <button class="btn" onclick="openChangePasswordPage()">Change Password</button>
+                <button class="btn danger" onclick="logout()">Logout</button>
+            </div>
+            <div class="settings-box">
+                <h2>Account</h2>
+                <button class="btn" onclick="window.location.href=&#x27;profile.html&#x27;">Edit Profile</button>
+                <button class="btn danger" onclick="deleteCurrentAccount()">Delete Account</button>
+            </div>
+        </section>
+        <div id="toast-container"></div>
+    </body>
+</html>

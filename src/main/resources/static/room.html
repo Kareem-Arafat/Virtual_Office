@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rooms - Socum</title>
+        <style>
+            .logged-in .login_button,
+            .logged-in .signup_button
+            {
+                display: none !important;
+            }
+        </style>
+        <link rel="stylesheet" href="CSS/master.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+        <script src="JS/room.js"></script>
+        <script src="JS/ai.js"></script>
+        <script src="JS/notifications.js"></script>
+        <script src="JS/theme.js"></script>
+        <script src="JS/auth.js"></script>
+    </head>
+    <body class="room-page">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="RafiQ logo">
+            </div>
+            <span class="Raf">RafiQ</span>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="main.html">Home</a>
+                <a href="settings.html">Settings</a>
+            </div>
+        </nav>
+        <div id="themeWidget" class="theme-widget">
+            <span class="icon sun"><i class="fa-solid fa-sun"></i></span>
+            <label class="switch">
+                <input type="checkbox" id="darkToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="icon moon"><i class="fa-solid fa-moon"></i></span>
+        </div>
+        <div class="app">
+            <div class="rooms-sidebar">
+                <h2 class="h2">Rooms</h2>
+                <div class="room-list" id="roomList"></div>
+                <button class="add-room manager-only" onclick="addRoom()">+ Add Room</button>
+            </div>
+            <div class="main">
+                <div class="topbar">
+                    <h2 id="roomTitle">Select a room</h2>
+                </div>
+                <div class="chat-box" id="chatBox">
+                    <p class="room-empty-state">Select one of your rooms to start chatting.</p>
+                </div>
+                <div class="input-box room-chat-disabled" id="chatInputArea">
+                    <input type="text" id="msgInput" placeholder="Type message...">
+                    <button id="sendMessageButton" type="button" onclick="sendMessage(event)">Send</button>
+                    <button id="voiceButton" type="button" onclick="toggleVoiceRecording()">
+                        <i class="fa-solid fa-microphone"></i>
+                        Voice
+                    </button>
+                    <input id="roomMediaInput" type="file" accept="image/*,video/*" hidden="" onchange="uploadRoomMedia(event)">
+                    <button id="mediaButton" type="button" onclick="chooseRoomMedia()"><i class="fa-solid fa-photo-film"></i> Media</button>
+                </div>
+            </div>
+            <div class="right">
+                <h3 id="activeRoomName">No room selected</h3>
+                <div class="room-stats">
+                    <p>Messages: <span id="msgCount">0</span></p>
+                </div>
+                <div class="room-members">
+                    <h4>Members</h4>
+                    <div class="member-actions">
+                        <input id="roomMemberStaffId" type="text" placeholder="Staff ID (DEV-12345)">
+                        <button class="btn add_btn" onclick="promptAddMember()">Add Member</button>
+                        <button class="btn" onclick="loadRoomMembers()">Refresh</button>
+                    </div>
+                    <ul id="memberList">
+                        <li>No members</li>
+                    </ul>
+                </div>
+                <button id="leaveRoomButton" onclick="leaveCurrentRoom()" class="btn danger">Leave Room</button>
+                <button id="deleteRoomButton" onclick="deleteCurrentRoom()" class="btn danger">Delete Room</button>
+            </div>
+        </div>
+        <div id="toast-container"></div>
+        <div id="socum-ai-launcher" class="socum-chat-launcher">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="AI Bot">
+        </div>
+        <div id="socum-ai-window" class="socum-chat-window socum-hidden">
+            <div class="socum-chat-header">
+                <div class="socum-bot-info"><span class="socum-status-dot"></span> <span>RafiQ AI Assistant</span></div>
+                <button id="socum-close-chat" class="close_button">×</button>
+            </div>
+            <div id="socum-chat-body" class="socum-chat-body"></div>
+            <div class="socum-chat-footer">
+                <input type="text" id="socum-chat-input" placeholder="How can I help you?">
+                <button id="socum-send-btn">➤</button>
+            </div>
+        </div>
+    </body>
+</html>
