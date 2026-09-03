@@ -26,7 +26,7 @@ public class Post
 
     private String content;
 
-    @Column(columnDefinition = "nvarchar(max)")
+    @Column(columnDefinition = "TEXT")
     private String imageUrl;
 
     private LocalDateTime createdAt;
