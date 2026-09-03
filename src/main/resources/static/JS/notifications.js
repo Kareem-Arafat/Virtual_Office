@@ -1,4 +1,4 @@
-let notificationStompClient = null;
+﻿let notificationStompClient = null;
 let notificationRealtimeStarted = false;
 let notifications = [];
 
@@ -95,7 +95,7 @@ function startNotificationRealtime()
     }
 
 
-    const socket =new SockJS("http://localhost:8080/ws");
+    const socket =new SockJS("/ws");
 
 
     notificationStompClient = Stomp.over(socket);
@@ -151,7 +151,7 @@ async function loadNotifications()
     {
         const response = await fetch
         (
-            "http://localhost:8080/api/notifications",
+            "/api/notifications",
             {
                 method: "GET",
                 headers:
@@ -253,7 +253,7 @@ async function markNotificationAsRead(notificationId)
     try
     {
         const response = await fetch(
-            "http://localhost:8080/api/notifications/"
+            "/api/notifications/"
             + notificationId
             + "/read",
             {
@@ -367,7 +367,7 @@ async function markAllNotificationsRead(event)
 
     try
     {
-        const response = await fetch("http://localhost:8080/api/notifications/read-all",
+        const response = await fetch("/api/notifications/read-all",
         {
             method: "PUT",
             headers:
@@ -395,3 +395,4 @@ async function markAllNotificationsRead(event)
         showNotificationToast("Could not update notifications.");
     }
 }
+

@@ -1,4 +1,4 @@
-const TASK_API = "http://localhost:8080/api/tasks";
+﻿const TASK_API = "/api/tasks";
 let loadedTasks = [];
 
 
@@ -243,7 +243,7 @@ function displayTasks(tasks)
             if(task.status === "DONE")
             {
                 actions = `
-                    <strong>✓ Completed</strong>
+                    <strong>âœ“ Completed</strong>
 
                     <button
                         type="button"
@@ -597,3 +597,4 @@ document.addEventListener("DOMContentLoaded", function()
     applyTaskPermissions();
     loadTasks();
 });
+

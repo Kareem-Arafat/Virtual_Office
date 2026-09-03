@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function()
+﻿document.addEventListener("DOMContentLoaded", function()
 {
     applyTeamLeaderControls();
     loadEmployees();
@@ -36,7 +36,7 @@ async function loadEmployees()
     {
         const response = await fetch
         (
-            "http://localhost:8080/api/users/visible",
+            "/api/users/visible",
             {
                 method: "GET",
 
@@ -247,7 +247,7 @@ async function changeUserRole(userId)
     {
         const response = await fetch
         (
-            "http://localhost:8080/api/admin/users/"
+            "/api/admin/users/"
             + userId
             + "/role?role="
             + encodeURIComponent(role),
@@ -309,7 +309,7 @@ async function removeEmployee(userId,username)
     {
         const response = await fetch
         (
-            "http://localhost:8080/api/admin/users/"
+            "/api/admin/users/"
             + userId,
             {
                 method: "DELETE",
@@ -442,7 +442,7 @@ async function teamMemberRequest(method, staffId)
 {
     try
     {
-        const response = await fetch("http://localhost:8080/api/team/members?staffId=" + encodeURIComponent(staffId),
+        const response = await fetch("/api/team/members?staffId=" + encodeURIComponent(staffId),
         {
             method: method,
             headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")}
@@ -461,3 +461,4 @@ async function teamMemberRequest(method, staffId)
         return null;
     }
 }
+

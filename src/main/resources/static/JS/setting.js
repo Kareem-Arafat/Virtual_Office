@@ -1,4 +1,4 @@
-function openChangePasswordPage()
+﻿function openChangePasswordPage()
 {
     window.location.href = "change-password.html";
 }
@@ -38,7 +38,7 @@ async function deleteCurrentAccount()
 
     const response = await fetch
     (
-        "http://localhost:8080/api/users/me",
+        "/api/users/me",
         {
             method: "DELETE",
 

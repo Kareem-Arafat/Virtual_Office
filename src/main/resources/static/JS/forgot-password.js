@@ -1,4 +1,4 @@
-let passwordResetEmail = "";
+﻿let passwordResetEmail = "";
 let verifiedResetCode = "";
 
 
@@ -19,7 +19,7 @@ async function requestPasswordResetCode()
 
     const response = await fetch
     (
-        "http://localhost:8080/auth/forgot-password/request",
+        "/auth/forgot-password/request",
         {
             method: "POST",
 
@@ -73,7 +73,7 @@ async function verifyPasswordResetCode()
 
     const response = await fetch
     (
-        "http://localhost:8080/auth/forgot-password/verify",
+        "/auth/forgot-password/verify",
         {
             method: "POST",
 
@@ -132,7 +132,7 @@ async function submitForgotPasswordReset()
 
     const response = await fetch
     (
-        "http://localhost:8080/auth/forgot-password/reset",
+        "/auth/forgot-password/reset",
         {
             method: "POST",
 

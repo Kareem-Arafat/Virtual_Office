@@ -1,4 +1,4 @@
-let stompClient = null;
+﻿let stompClient = null;
 let currentRoomId = null;
 let currentSubscription = null;
 let isWebSocketConnected = false;
@@ -50,7 +50,7 @@ function connectWebSocket()
         }
 
 
-        const socket = new SockJS("http://localhost:8080/ws");
+        const socket = new SockJS("/ws");
 
         stompClient = Stomp.over(socket);
 
@@ -124,7 +124,7 @@ async function loadRooms()
 
     const response = await fetch
     (
-        "http://localhost:8080" + roomsUrl,
+        "" + roomsUrl,
         {
             method: "GET",
             headers:
@@ -201,7 +201,7 @@ function displayRooms(rooms)
 
         roomDetails.textContent =
             room.membersCount +
-            " members · Created by " +
+            " members Â· Created by " +
             room.createdByUsername;
 
 
@@ -344,7 +344,7 @@ async function loadRoomMessages(roomId)
 
     const response = await fetch
     (
-        "http://localhost:8080/api/rooms/" + roomId + "/messages",
+        "/api/rooms/" + roomId + "/messages",
         {
             method: "GET",
             headers:
@@ -437,7 +437,7 @@ async function sendMessage(event)
 
         const response = await fetch
         (
-            "http://localhost:8080/api/rooms/" + roomId + "/messages",
+            "/api/rooms/" + roomId + "/messages",
             {
                 method: "POST",
                 headers:
@@ -945,7 +945,7 @@ async function uploadVoiceMessage()
     {
         const response = await fetch
         (
-            "http://localhost:8080/api/rooms/" + roomId + "/media",
+            "/api/rooms/" + roomId + "/media",
             {
                 method: "POST",
 
@@ -1074,7 +1074,7 @@ async function uploadRoomMedia(event)
     {
         const response = await fetch
         (
-            "http://localhost:8080/api/rooms/" + roomId + "/media",
+            "/api/rooms/" + roomId + "/media",
             {
                 method: "POST",
 
@@ -1590,7 +1590,7 @@ async function roomRequest(path, method, body)
     {
         const response = await fetch
         (
-            "http://localhost:8080" + path,
+            "" + path,
             options
         );
 

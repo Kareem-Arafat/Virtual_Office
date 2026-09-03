@@ -1,4 +1,4 @@
-let prayerTimes = {};
+﻿let prayerTimes = {};
 let countdownInterval = null;
 let lastAlertedPrayer = null;
 
@@ -85,7 +85,7 @@ async function loadPrayerTimes(latitude, longitude)
     {
         const response = await fetch
         (
-            `http://localhost:8080/api/prayer-times?lat=${latitude}&lon=${longitude}`,
+            `/api/prayer-times?lat=${latitude}&lon=${longitude}`,
             {
                 method: "GET",
 
@@ -197,31 +197,31 @@ function updateNextPrayer()
     [
         {
             name: "Fajr",
-            arabicName: "الفجر",
+            arabicName: "Ø§Ù„ÙØ¬Ø±",
             time: prayerTimes.Fajr
         },
 
         {
             name: "Dhuhr",
-            arabicName: "الظهر",
+            arabicName: "Ø§Ù„Ø¸Ù‡Ø±",
             time: prayerTimes.Dhuhr
         },
 
         {
             name: "Asr",
-            arabicName: "العصر",
+            arabicName: "Ø§Ù„Ø¹ØµØ±",
             time: prayerTimes.Asr
         },
 
         {
             name: "Maghrib",
-            arabicName: "المغرب",
+            arabicName: "Ø§Ù„Ù…ØºØ±Ø¨",
             time: prayerTimes.Maghrib
         },
 
         {
             name: "Isha",
-            arabicName: "العشاء",
+            arabicName: "Ø§Ù„Ø¹Ø´Ø§Ø¡",
             time: prayerTimes.Isha
         }
     ];
@@ -397,7 +397,7 @@ function showPrayerAlert(arabicPrayerName)
 
     if(alertName)
     {
-        alertName.textContent = "أذان " + arabicPrayerName;
+        alertName.textContent = "Ø£Ø°Ø§Ù† " + arabicPrayerName;
     }
 
     if(alertBox)

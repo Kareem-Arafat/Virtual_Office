@@ -1,4 +1,4 @@
-async function checkLoggedUser()
+﻿async function checkLoggedUser()
 {
     const token = sessionStorage.getItem("token");
 
@@ -8,7 +8,7 @@ async function checkLoggedUser()
         return;
     }
 
-    const response = await fetch("http://localhost:8080/me",
+    const response = await fetch("/me",
     {
         headers:
         {

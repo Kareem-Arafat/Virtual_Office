@@ -1,4 +1,4 @@
-// ==================== DARK MODE ====================
+﻿// ==================== DARK MODE ====================
 
 let initialTheme = "light";
 
@@ -152,7 +152,7 @@ async function submitChangePassword()
         return;
     }
 
-    const response = await fetch("http://localhost:8080/api/users/change-password",
+    const response = await fetch("/api/users/change-password",
     {
         method: "PUT",
         headers:
@@ -190,3 +190,4 @@ async function submitChangePassword()
         confirmPassword.value = "";
     }
 }
+

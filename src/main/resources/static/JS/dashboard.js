@@ -1,4 +1,4 @@
-document.addEventListener
+﻿document.addEventListener
 (
     "DOMContentLoaded",
     function()
@@ -25,9 +25,9 @@ async function loadDashboardStatistics()
         const headers = {"Authorization": "Bearer " + token};
         const responses = await Promise.all
         ([
-            fetch("http://localhost:8080/me", {headers: headers}),
-            fetch("http://localhost:8080/api/tasks", {headers: headers}),
-            fetch("http://localhost:8080/api/users/visible", {headers: headers})
+            fetch("/me", {headers: headers}),
+            fetch("/api/tasks", {headers: headers}),
+            fetch("/api/users/visible", {headers: headers})
         ]);
 
         if(responses.some(response => response.status === 401))
@@ -206,7 +206,7 @@ function displayUpcomingTasks(tasks)
             const assignedTo = escapeDashboardText(task.assignedToUsername || "You");
             const deadline = escapeDashboardText(task.deadline || "No deadline");
 
-            return `<p><strong>${title}</strong> · ${assignedTo} · ${deadline}</p>`;
+            return `<p><strong>${title}</strong> Â· ${assignedTo} Â· ${deadline}</p>`;
         }).join("");
     }
     else
@@ -426,3 +426,4 @@ function updateCompletionBar(percentage)
         statsCompletionBar.style.width = percentage + "%";
     }
 }
+

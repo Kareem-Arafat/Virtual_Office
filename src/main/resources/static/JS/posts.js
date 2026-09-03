@@ -1,4 +1,4 @@
-const POSTS_API = "http://localhost:8080/api/posts";
+﻿const POSTS_API = "/api/posts";
 
 
 
@@ -153,7 +153,7 @@ async function addPost()
 
     const response = await fetch
     (
-        "http://localhost:8080/api/posts",
+        "/api/posts",
         {
             method: "POST",
 
@@ -318,11 +318,11 @@ function displayPosts(posts)
         }
 
 
-        let likeIcon = "🤍";
+        let likeIcon = "ðŸ¤";
 
         if(post.likedByMe)
         {
-            likeIcon = "❤️";
+            likeIcon = "â¤ï¸";
         }
 
 
@@ -623,3 +623,4 @@ function getPostMediaHtml(mediaUrl)
 
 
 document.addEventListener("DOMContentLoaded",loadPosts);
+

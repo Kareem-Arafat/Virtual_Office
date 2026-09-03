@@ -1,4 +1,4 @@
-const API = "http://localhost:8080";
+﻿const API = "";
 
 
 
@@ -33,11 +33,11 @@ async function loadProfile()
     document.getElementById("nameInput").value = user.username || "";
     document.getElementById("emailInput").value = user.email || "";
     document.getElementById("phoneInput").value = user.phone || "";
-    document.getElementById("staffIdDisplay").value = user.staffId || "—";
+    document.getElementById("staffIdDisplay").value = user.staffId || "â€”";
 
     document.getElementById("displayName").textContent = user.username || "";
     document.getElementById("introRole").textContent = user.role || "";
-    document.getElementById("introStaffId").textContent = "Staff ID: " + (user.staffId || "—");
+    document.getElementById("introStaffId").textContent = "Staff ID: " + (user.staffId || "â€”");
 
     return user;
 }
@@ -574,3 +574,4 @@ document.addEventListener("DOMContentLoaded", async function()
     await loadTaskStats(user);
     await loadRoomCount();
 });
+

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function()
+﻿document.addEventListener("DOMContentLoaded", function()
 {
     ensureChatbotUi();
 
@@ -91,7 +91,7 @@ function ensureChatbotUi()
 
             <div class="socum-chat-footer">
                 <input type="text" id="socum-chat-input" placeholder="Ask about your tasks or workspace">
-                <button id="socum-send-btn">➤</button>
+                <button id="socum-send-btn">âž¤</button>
             </div>
         </div>
     `;
@@ -141,7 +141,7 @@ async function sendAiMessage()
     {
         const response = await fetch
         (
-            "http://localhost:8080/api/ai/ask",
+            "/api/ai/ask",
             {
                 method: "POST",
 
@@ -228,3 +228,4 @@ function addAiMessage(message)
 
     chatBody.scrollTop =chatBody.scrollHeight;
 }
+

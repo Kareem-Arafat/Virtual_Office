@@ -1,10 +1,10 @@
-async function triggerLogin()
+﻿async function triggerLogin()
 {
     const username = document.getElementById("loginUsername").value.trim();
     const staffId = document.getElementById("loginStaffId").value.trim();
     const password = document.getElementById("loginPassword").value;
 
-    const response = await fetch("http://localhost:8080/auth/login",
+    const response = await fetch("/auth/login",
     {
         method: "POST",
 
@@ -49,7 +49,7 @@ async function triggerRegister()
     const email = document.getElementById("regEmail").value;
     const password = document.getElementById("regPass").value;
 
-    const response = await fetch("http://localhost:8080/auth/register",
+    const response = await fetch("/auth/register",
     {
         method: "POST",
 
