@@ -53,7 +53,15 @@ public class SecurityConfig
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.authorizeHttpRequests
         (
-            auth -> auth.requestMatchers("/", "/index.html", "/login.html", "/forgot-password.html", "/CSS/**", "/JS/**", "/images/**", "/auth/**", "/api/ai/ask", "/ws/**").permitAll().anyRequest().authenticated()
+            auth -> auth.requestMatchers(
+    "/",
+                "/*.html",
+                "/CSS/**",
+                "/JS/**",
+                "/images/**",
+                "/auth/**",
+                "/api/ai/ask",
+                "/ws/**").permitAll().anyRequest().authenticated()
         );
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
