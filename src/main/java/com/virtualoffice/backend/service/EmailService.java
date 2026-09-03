@@ -1,36 +1,42 @@
 package com.virtualoffice.backend.service;
 
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
 
 @Service
 public class EmailService
 {
-    private JavaMailSender mailSender;
+    private final RestClient restClient;
+    private final String apiKey;
+    private final String senderEmail;
 
-    public EmailService(JavaMailSender mailSender)
+    public EmailService(@Value("${brevo.api.key}") String apiKey, @Value("${brevo.sender.email}") String senderEmail)
     {
-        this.mailSender = mailSender;
+        this.restClient = RestClient.create();
+        this.apiKey = apiKey;
+        this.senderEmail = senderEmail;
     }
 
 
 
-    /* 
-        SimpleMailMessage = الجواب 
-        JavaMailSender = ساعي البريد 
-    */
     @Async
     public void sendSimpleEmail(String to, String subject, String content)
     {
-        SimpleMailMessage message = new SimpleMailMessage();
+        Map<String, Object> body = Map.of("sender", Map.of("name", "RafiQ", "email", senderEmail),"to", List.of(Map.of("email", to)),"subject", subject,"textContent", content);
 
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(content);
-
-        mailSender.send(message);
+        restClient.post()
+            .uri("https://api.brevo.com/v3/smtp/email")
+            .header("api-key", apiKey)
+            .header("accept", "application/json")
+            .header("content-type", "application/json")
+            .body(body)
+            .retrieve()
+            .toBodilessEntity();
     }
 
 
