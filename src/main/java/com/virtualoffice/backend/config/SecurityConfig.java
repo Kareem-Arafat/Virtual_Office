@@ -54,14 +54,17 @@ public class SecurityConfig
         http.authorizeHttpRequests
         (
             auth -> auth.requestMatchers(
-    "/",
+                "/",
                 "/*.html",
                 "/CSS/**",
                 "/JS/**",
                 "/images/**",
+                "/audio/**",
+                "/login_page/**",
                 "/auth/**",
                 "/api/ai/ask",
-                "/ws/**").permitAll().anyRequest().authenticated()
+                "/ws/**"
+            ).permitAll().anyRequest().authenticated()
         );
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
