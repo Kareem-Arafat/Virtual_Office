@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -24,7 +23,6 @@ public class EmailService
 
 
 
-    @Async
     public void sendSimpleEmail(String to, String subject, String content)
     {
         Map<String, Object> body = Map.of("sender", Map.of("name", "RafiQ", "email", senderEmail),"to", List.of(Map.of("email", to)),"subject", subject,"textContent", content);
@@ -41,7 +39,6 @@ public class EmailService
 
 
 
-    @Async
     public void sendWelcomeEmail(String to, String username, String staffId)
     {
         String subject = "Welcome to Virtual Office";
@@ -71,8 +68,6 @@ public class EmailService
     }
 
     
-
-    @Async
     public void sendRoleChangedEmail(String to, String username, String newRole, String newStaffId)
     {
         String subject = "Your Virtual Office role changed";
@@ -87,7 +82,7 @@ public class EmailService
     }
 
 
-    @Async
+
     public void sendTaskAssignedEmail(String to, String username, String taskTitle)
     {
         String subject = "New task assigned";
@@ -98,7 +93,7 @@ public class EmailService
 
 
 
-    @Async
+
     public void sendRoomAddedEmail(String to, String username, String roomName)
     {
         String subject = "You were added to a room";
